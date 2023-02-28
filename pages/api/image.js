@@ -33,29 +33,27 @@ export default async function (req, res) {
       n: 10,
       size: "256x256",
     });
-    let image_url = response.data.data[0].url;
+
+    // let filepath = path.join(process.cwd(), `/public/house.png`);
+    // const response = await openai.createImageVariation(
+    //   fs.createReadStream(filepath),
+    //   10,
+    //   "256x256"
+    // );
+
+    // const response = await openai.createImageEdit(
+    //   fs.createReadStream(path.join(process.cwd(), `/public/house.png`)),
+    //   fs.createReadStream(path.join(process.cwd(), `/public/mask1.png`)),
+    //   prompt,
+    //   10,
+    //   "256x256"
+    // );
+    // let image_url = response.data.data[0].url;
+
     let imageUrls = [];
     for(var d of response.data.data){
       imageUrls.push(d.url);
     }
-
-    // let filepath = path.join(process.cwd(), `/public/corgi_and_cat_paw.png`);
-    // const response = await openai.createImageVariation(
-    //   fs.createReadStream(filepath),
-    //   1,
-    //   "1024x1024"
-    // );
-    // let image_url = response.data.data[0].url;
-
-
-    // const response = await openai.createImageEdit(
-    //   fs.createReadStream(path.join(process.cwd(), `/public/sunlit_lounge.png`)),
-    //   fs.createReadStream(path.join(process.cwd(), `/public/mask.png`)),
-    //   "A sunlit indoor lounge area with a pool containing a flamingo",
-    //   2,
-    //   "1024x1024"
-    // );
-    // let image_url = response.data.data[0].url;
     
     res.status(200).json({ result: imageUrls });
   } catch(error) {
